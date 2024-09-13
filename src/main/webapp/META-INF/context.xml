@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<Context>
+
+    <!-- 이 태그의 속성을 이용해서, 데이터소스 즉, 커넥션 풀이란 지원을 설정합니다. -->
+    <!-- 
+        아래설정대로 WAS가 구동될 때 자원객체를 만들고,
+        만들어진 자원객체를 JNDI 나무의 열매로서 대롱대롱 매달아 놓음
+        WAS안에서 사용되는 그 어떤 클래스에서든, 아래의 자원객체가 필요할때
+        JNDI 서비스가 제공하는 타입과 메소드를 이용해서, "이름"으로 열매를 찾아서
+        사용할 수 있도록 하기 위함 
+    -->
+    <Resource 
+    	name = "jdbc/h2/test"
+    	
+    	auth = "Container"
+    	type = "javax.sql.DataSource"
+    	
+        driverClassName="org.h2.Driver"
+        url="jdbc:h2:tcp://0.0.0.0/C:/app/h2/data/test"
+        username="sa"
+        password=""
+
+        maxTotal="10"
+        maxIdle="3"
+        MaxWaitMillis = "-1" />
+
+	<Resource
+		name = "jdbc/log4jdbc/h2/test"
+		
+		auth = "Container"
+		type = "javax.sql.DataSource"
+		
+		driverClassName = "net.sf.log4jdbc.sql.jdbcapi.DriverSpy"
+		url = "jdbc:log4jdbc:h2:tcp://0.0.0.0/C:/app/h2/data/test"
+		username = "sa"
+		password = ""
+		
+		maxTotal = "10"
+		maxIdle = "3"
+		maxWaitMillis = "-1" />
+    <Resource
+        name = "jdbc/oracle/xepdb1"
+            
+        auth = "Container"
+        type = "javax.sql.DataSource"
+        
+        driverClassName = "oracle.jdbc.OracleDriver"
+        url = "jdbc:oracle:thin:@DESKTOP-J8C96E9:1521/xepdb1"
+        username = "hr"
+        password = "oracle"
+        
+        maxTotal = "20"
+        maxIdle = "7"
+        maxWaitMillis = "-1" />
+
+        <Resource 
+		    name="jdbc/log4jdbc/oracle/xepdb1" 
+		    
+		    auth="Container"
+		    type="javax.sql.DataSource"
+		
+		    driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"
+		    url="jdbc:log4jdbc:oracle:thin:@DESKTOP-J8C96E9:1521/xepdb1"	
+		    
+		    username="hr"
+		    password="oracle"
+		    
+		    maxTotal="20"
+		    maxIdle="7"
+		    maxWaitMillis="-1"/>
+
+	
+</Context>
